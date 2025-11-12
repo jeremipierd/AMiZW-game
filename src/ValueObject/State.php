@@ -13,7 +13,7 @@ class State
         private Monster $monster,
         private int $wave,
         private readonly int $gold,
-        private readonly int $healsLeft,
+        private int $healsLeft,
         private bool $over,
         private readonly array $log)
     {
@@ -42,6 +42,10 @@ class State
     public function getHealsLeft(): int
     {
         return $this->healsLeft;
+    }
+    public function decreaseHealsLeft(): void
+    {
+        $this->healsLeft--;
     }
 
     public function isOver(): bool

@@ -54,7 +54,19 @@ class GameController extends AbstractController
                 $state->getMonster()->takeDmg($dmg);
                 break;
 
+            case ActionType::HEAVY->value:
+                $dmg = DmgHelper::calculateDamage(1,30);
+                $state->getMonster()->takeDmg($dmg);
+                break;
+
             case ActionType::HEAL->value:
+                $state->getPlayer()->setHp(100);
+                $state->decreaseHealsLeft();
+                break;
+
+            case ActionType::RUN->value:
+                $state->nextWave();
+                $state->setMonster($this->spawnMonster($state->getWave()));
                 break;
 
 
